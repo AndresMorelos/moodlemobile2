@@ -276,6 +276,10 @@ angular.module('mm.core')
 
             angular.forEach(dom.find('audio'), function(el) {
                 treatMedia(el, component, componentId, siteId);
+                if (ionic.Platform.isIOS()) {
+                    // Set data-tap-disabled="true" to make slider work in iOS.
+                    el.setAttribute('data-tap-disabled', true);
+                }
             });
             angular.forEach(dom.find('video'), function(el) {
                 treatVideoFilters(el);
@@ -342,7 +346,7 @@ angular.module('mm.core')
             return;
         }
 
-        var data = JSON.parse(el.getAttribute('data-setup') || '{}'),
+        var data = JSON.parse(el.getAttribute('data-setup') || el.getAttribute('data-setup-lazy') || '{}'),
             youtubeId = data.techOrder && data.techOrder[0] && data.techOrder[0] == 'youtube' && data.sources && data.sources[0] &&
                 data.sources[0].src && youtubeGetId(data.sources[0].src);
 
