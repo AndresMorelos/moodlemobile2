@@ -226,5 +226,9 @@ $ionicons-font-path: "../lib/ionic/release/fonts" !default;
   }
 }
 
+.CEaDName{
+  color: $white;
+  font-size: 1em;
+}
 // Include all of Moodle Mobile.
 @import "www/build/mm.bundle.scss";
